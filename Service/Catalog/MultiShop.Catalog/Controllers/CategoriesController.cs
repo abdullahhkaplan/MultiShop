@@ -19,7 +19,7 @@ namespace MultiShop.Catalog.Controllers
         public async Task<IActionResult> GetCategoryList()
         {
             var values = await _categoryService.GetCategoryDtosAsync();
-            return Ok();
+            return Ok(values);
 
         }
         [HttpGet("{id}")]
