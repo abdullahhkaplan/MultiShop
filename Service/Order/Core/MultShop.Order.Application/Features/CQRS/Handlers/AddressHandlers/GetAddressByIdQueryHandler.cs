@@ -1,4 +1,5 @@
-﻿using MultiShop.Order.Application.Features.CQRS.Results.AddressResults;
+﻿using MultiShop.Order.Application.Features.CQRS.Queries.AddressQueries;
+using MultiShop.Order.Application.Features.CQRS.Results.AddressResults;
 using MultiShop.Order.Application.Interfaces;
 using MultiShop.Order.Domain.Entities;
 using System;
@@ -15,12 +16,12 @@ namespace MultiShop.Order.Application.Features.CQRS.Handlers.AddressHandlers
         {
             _addressRepository = addressRepository;
         }
-        public async Task<GetAddressByIdQueryResult> GetAddressByIdQueryResultAsync(GetAddressByIdQueryResult query)
+        public async Task<GetAddressByIdQueryResult> GetAddressByIdQueryResultAsync(GetAddressByIdQuery query)
         {
-            var values= await _addressRepository.GetByIdAsync(query.AddressId);
+            var values= await _addressRepository.GetByIdAsync(query.Id);
             return new GetAddressByIdQueryResult
             {
-                AddressId = query.AddressId,
+                AddressId = query.Id,
                 City = values.City,
                 Detail = values.Detail,
                 District = values.District,
